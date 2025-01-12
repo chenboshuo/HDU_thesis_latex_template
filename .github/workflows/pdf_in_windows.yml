@@ -1,0 +1,54 @@
+name: PDF in Windows
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: use pdflatex
+    runs-on: windows-latest
+    timeout-minutes: 200
+    steps:
+      - uses: actions/checkout@v4
+
+      # 安装字体 (Times New Roman, SimSun, SimHei, KaiTi)
+      - name: Install fonts (Times New Roman, SimSun, SimHei, KaiTi)
+        run: |
+          mkdir -p $env:USERPROFILE\AppData\Local\Microsoft\Windows\Fonts
+          # 下载并安装字体
+          Invoke-WebRequest -Uri "https://github.com/Haixing-Hu/latex-chinese-fonts/raw/refs/heads/master/english/Serif/TimesNewRoman.ttf" -OutFile "$env:USERPROFILE\AppData\Local\Microsoft\Windows\Fonts\TimesNewRoman.ttf"
+          Invoke-WebRequest -Uri "https://github.com/Haixing-Hu/latex-chinese-fonts/raw/refs/heads/master/chinese/%E5%AE%8B%E4%BD%93/SimSun.ttc" -OutFile "$env:USERPROFILE\AppData\Local\Microsoft\Windows\Fonts\SimSun.ttc"
+          Invoke-WebRequest -Uri "https://github.com/Haixing-Hu/latex-chinese-fonts/raw/refs/heads/master/chinese/%E9%BB%91%E4%BD%93/SimHei.ttf" -OutFile "$env:USERPROFILE\AppData\Local\Microsoft\Windows\Fonts\SimHei.ttf"
+          Invoke-WebRequest -Uri "https://github.com/Haixing-Hu/latex-chinese-fonts/raw/refs/heads/master/chinese/%E6%A5%B7%E4%BD%93/Kaiti.ttf" -OutFile "$env:USERPROFILE\AppData\Local\Microsoft\Windows\Fonts\Kaiti.ttf"
+
+      # 安装 LaTeX (使用 MikTeX)
+      - name: Install LaTeX (MikTeX)
+        run: |
+          choco install miktex --confirm
+
+      # 安装 make 工具
+      - name: Install Make
+        run: |
+          choco install make --confirm
+
+      # 编译 PDF
+      - name: Make pdf
+        run: |
+          pdflatex -output-directory="./build" main.tex
+          bibtex ./build/$(basename $<)
+          pdflatex -output-directory="./build" main.tex
+          pdflatex -output-directory="./build" main.tex
+
+      # 上传构建的 PDF 文件
+      - name: Upload target example
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: example documents
+          path: build/main.pdf
