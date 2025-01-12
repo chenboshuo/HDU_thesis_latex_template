@@ -11,7 +11,7 @@ main: build/main.pdf
 ## make *.pdf : generate the pdf files
 build/%.pdf: %.tex build
 	xelatex -output-directory="./build" $<
-	biber ./build/$(basename $<)
+	bibtex ./build/$(basename $<)
 	xelatex -output-directory="./build" $<
 	xelatex -output-directory="./build" $<
 
