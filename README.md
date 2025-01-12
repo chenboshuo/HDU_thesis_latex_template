@@ -21,3 +21,4 @@ make clean
 清理中间文件
 
 - :wrench: 删除了 linux 的错误字体设置(https://github.com/chenboshuo/HDU-latex-template-for-master/commit/340e46327b908e5ea8b2a5b280e322d22bd4425d)
+- :green_heart: 使用 github actions, 可以从 actions/Artifacts 获得样例 pdf

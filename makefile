@@ -3,7 +3,7 @@
 .INTERMEDIATE : inkscape tree
 
 ## make all : regenerate all results.
-all:  main ebook draft release open_report
+all:  main
 
 ## make main : genreate the main pdf
 main: build/main.pdf

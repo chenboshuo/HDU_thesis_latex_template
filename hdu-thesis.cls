@@ -100,7 +100,6 @@
   \newCJKfontfamily{\kaiti}{KaiTi}
   \newfontfamily{\heiti@letter}{SimHei}
 \fi
-\fi
 
 \setmainfont{Times New Roman}% 英文默认Time New Roman
 
