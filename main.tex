@@ -1,9 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%\documentclass[master]{hdu-thesis}[]中不同的模式选择对应不同的模板%%%%
-%|bachelor_p| 本科生毕业论文模板 | 
-%|bachelor_d| 本科生毕业设计模板 | 
+%|bachelor_p| 本科生毕业论文模板 |
+%|bachelor_d| 本科生毕业设计模板 |
 %|bachelor_review| 本科生送审模板 |
-%|master| 学术型硕士模板 | 
+%|master| 学术型硕士模板 |
 %|promaster| 专业学位硕士模板 |
 %|doctor| 博士学位模板 |
 %|engdoctor| 工程博士学位模板 |
@@ -13,7 +13,7 @@
 %|engdoctor_review|  工程博士送审模板 |
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[master]{hdu-thesis}
+\documentclass[master]{styles/hdu-thesis}
 
 \title{杭州电子科技大学Latex毕业论文模板使用方法}{Munual of latex on thesis for HDU}
 \author{张三}{San Zhang}%%%%%%作者
@@ -27,7 +27,6 @@
 
 \begin{document}
 
-
 %%%%%%%%%%%%%%%%插入封面%%%%%%%%%%%
 \makecover
 %%%%%%%%%%%%%%%%插入原创性声明%%%%%%%%%
@@ -39,7 +38,7 @@
 
 % \cnabstract
 
-% \begin{center} 
+% \begin{center}
 %   {\sihao\bfseries 热爱生命}\\[3pt]
 % 我不去想，
 
@@ -71,7 +70,7 @@
 % 只要热爱生命，
 
 % 一切，都在意料之中。
-% \end{center} 
+% \end{center}
 
 
 % \cnkeyword{Latex，热爱生命，汪国真}
@@ -172,7 +171,7 @@
 
 \subsection{插入项目编号}
 
-\begin{enumerate}[leftmargin=2em,itemsep=2pt,topsep=0pt,parsep=0pt,label=\alph*)] 
+\begin{enumerate}[leftmargin=2em,itemsep=2pt,topsep=0pt,parsep=0pt,label=\alph*)]
   \item 开发目标；
   \item 融合图像。
 \end{enumerate}
@@ -326,7 +325,7 @@ f(x) > f({x^*}) + \nabla f{({x^*})^T}(x - {x^*}) + c{\left\| {x - {x^*}} \right\
 \begin{problem}
   设$f$在凸集$D \subset {R^n}$上一阶连续可微。
   \end{problem}
- 
+
 \subsection{其它环境}
 其它环境可参考下图配置
 \textcolor{red}{插入引理、推论等可参考下图对定理环境做对应修改得到（如图\ref{fig_定理环境}所示}。
@@ -393,7 +392,7 @@ f(x) > f({x^*}) + \nabla f{({x^*})^T}(x - {x^*}) + c{\left\| {x - {x^*}} \right\
 
 
 %%%%%%%%%%%%%%%%%致谢%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
+
 
 
 \input{contents/acknowledgement.tex}
@@ -411,7 +410,7 @@ f(x) > f({x^*}) + \nabla f{({x^*})^T}(x - {x^*}) + c{\left\| {x - {x^*}} \right\
 %  %\input{contents/resume}
  \personalresult
  张三，男，xxxx年x月生。目前在杭州电子科技大学自动化学院攻读控制科学与工程博士学位。当前研究方向包括自主无人系统等。\\
- 
+
  {\par\bfseries \noindent 攻读XX期间的主要成果：}
  \begin{enumerate}
   \item  xxxxx. \newblock Stability analysis for a class of switched systems under
