@@ -3,7 +3,7 @@
 .INTERMEDIATE : inkscape tree
 
 ## make all : regenerate all results.
-all:  main
+all:  main draft
 
 ## make main : genreate the main pdf
 main: build/main.pdf
@@ -15,6 +15,14 @@ build/%.pdf: %.tex build
 	xelatex -output-directory="./build" $<
 	xelatex -output-directory="./build" $<
 
+# draft version
+draft.tex : build
+	echo "\documentclass[master,draft]{styles/hdu-thesis}" > draft.tex
+	awk 'FNR>2' main.tex >> draft.tex
+
+## make draft: make build/draft.pdf
+draft: build/draft.pdf
+	rm -f draft.tex
 
 clean:
 	# git ls-files --others | xargs gio trash

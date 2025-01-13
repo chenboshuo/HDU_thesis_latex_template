@@ -39,5 +39,11 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: exammaple docuemnts
+          name: examaple docuemnts
           path: build/main.pdf
+      - name: Upload draft example
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: draft version
+          path: build/draft.pdf

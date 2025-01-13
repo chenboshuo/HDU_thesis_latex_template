@@ -22,3 +22,4 @@ make clean
 
 - :wrench: 删除了 linux 的错误字体设置(https://github.com/chenboshuo/HDU-latex-template-for-master/commit/340e46327b908e5ea8b2a5b280e322d22bd4425d)
 - :green_heart: 使用 github actions, 可以从 actions/Artifacts 获得样例 pdf
+- :art: 调整目录结构, 将手册指南放到草稿模式中, 草稿模式可以提供 label name, 方便引用

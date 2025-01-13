@@ -58,7 +58,7 @@
 \RequireXeTeX
 
 \RequirePackage{xcolor}
-\RequirePackage{graphicx}
+\RequirePackage[final]{graphicx}
 \RequirePackage{epstopdf}
 \RequirePackage[font={doublespacing, small}, labelsep=space, skip=6pt]{caption}
 
@@ -583,8 +583,9 @@
 
 \RequirePackage[hyphens]{xurl}
 \RequirePackage[hyperfootnotes=false,
-    bookmarksnumbered,
-    bookmarksdepth=4
+  bookmarksnumbered,
+  bookmarksdepth=4,
+  final
 ]{hyperref}
 \hypersetup{
   colorlinks=true,
@@ -705,7 +706,6 @@
 \renewcommand{\listtablename}{表格目录}
 \renewcommand{\listfigurename}{图目录}
 \SetAlgorithmName{算法}{算法}{算法列表}
-\newcommand{\personalresulttitle}{攻读\cn@degree{}学位期间取得的成果}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1024,13 +1024,13 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%个人成果设置%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand{\personalresult}{
+% 个人成果设置
+\newcommand{\personalAchievementsTitle}{攻读\cn@degree{}学位期间取得的成果}
+\newcommand{\personalAchievements}{
   \setcounter{section}{0}
-    \chapter*{\personalresulttitle}
-    \markboth{\personalresulttitle}{\personalresulttitle}
-    \addcontentsline{toc}{chapter}{\personalresulttitle}
+    \chapter*{\personalAchievementsTitle}
+    \markboth{\personalAchievementsTitle}{\personalAchievementsTitle}
+    \addcontentsline{toc}{chapter}{\personalAchievementsTitle}
   \thispagestyle{fancy}
   \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 }
@@ -1078,3 +1078,13 @@
   \fi
   \def\@BODY{\null}
 }{}{}
+
+% 帮助文件放到草稿模式中
+%% https://github.com/wennboo/HDU-latex-template-for-master
+\RequirePackage{ifdraft}
+\ifdraft{
+  \fancyhead[l]{草稿}
+  \fancyhead[r]{\today}
+  \renewcommand{\headrulewidth}{1pt}
+  \RequirePackage{showlabels}
+}{}
