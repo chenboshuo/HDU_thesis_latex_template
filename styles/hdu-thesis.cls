@@ -804,48 +804,6 @@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%中英文摘要%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand{\cnabstract}{
-  %\setcounter{page}{1}
-  \pagenumbering{Roman}
-  %\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
-  %\setcounter{section}{0}
-    \chapter*{摘\one@space 要}
-    \addcontentsline{toc}{chapter}{摘\one@space 要}
-    \fancyhf{} %清除以前对页眉页脚的设置
-    \fancyhead[C]{\wuhao 摘\one@space 要}
-    %送审版页眉
-    \ifreviewhead
-    \fancyhead[C]{\wuhao\cn@thesisheader}
-    \fi
-    \fancyfoot[CE,CO]{\xiaowuhao \thepage}
-}
-
-\newcommand{\cnkeyword}[1]{
-  \par\vspace{\baselineskip}
-  \noindent
-  \@hangfrom{\makebox[48pt][l]{\heiti 关键词：}}#1
-}
-
-
-\newcommand{\enabstract}{
-  \chapter*{\bfseries ABSTRACT}
-  \addcontentsline{toc}{chapter}{ABSTRACT}
-    \fancyhf{}
-    \fancyhead[C]{\wuhao ABSTRACT}
-    %送审版页眉
-    \ifreviewhead
-    \fancyhead[C]{\wuhao\cn@thesisheader}
-    \fi
-    \fancyfoot[CE,CO]{\xiaowuhao \thepage}
-}
-
-\newcommand{\enkeyword}[1]{
-  \par\vspace{\baselineskip}
-  \noindent
-  \@hangfrom{\makebox[2.3cm][l]{\bfseries Keywords:}}#1
-}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%生成图列表%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1088,3 +1046,50 @@
   \renewcommand{\headrulewidth}{1pt}
   \RequirePackage{showlabels}
 }{}
+
+% 摘要
+  \RequirePackage[main=pinyin,english]{babel}
+  \newcommand{\keywords}[1]{}
+  \newenvironment{abstract}{}{}
+  % 中文摘要设置
+  \addto\captionspinyin{%
+    \renewcommand{\keywords}[1]{%
+      \vspace{\baselineskip}
+      \noindent
+      \@hangfrom{\makebox[48pt][l]{\heiti 关键词：}}%
+      #1
+    }
+    \renewenvironment{abstract}{%
+      \pagenumbering{Roman}
+      \chapter*{摘\one@space 要}
+      \addcontentsline{toc}{chapter}{摘\one@space 要}
+      \pagestyle{fancy}
+      \fancyhf{} %清除以前对页眉页脚的设置
+      \fancyhead[C]{\wuhao 摘\one@space 要}
+      %送审版页眉
+      \ifreviewhead
+        \fancyhead[C]{\wuhao\cn@thesisheader}
+      \fi
+      \fancyfoot[CE,CO]{\xiaowuhao \thepage}
+    }{} % end abstract environment settings
+  } % end add to pinyin
+  % 英文摘要设置 English abstract settings
+  \addto\captionsenglish{%
+    \renewcommand{\keywords}[1]{%
+      \vspace{\baselineskip}
+      \noindent
+      \@hangfrom{\makebox[2.3cm][l]{\bfseries Keywords:}}#1
+    } % end command keywords
+    \renewenvironment{abstract}{%
+      \chapter*{\bfseries ABSTRACT}
+      \addcontentsline{toc}{chapter}{ABSTRACT}
+      \pagestyle{fancy}
+      \fancyhf{}
+      \fancyhead[C]{\wuhao ABSTRACT}
+      %送审版页眉
+      \ifreviewhead
+        \fancyhead[C]{\wuhao\cn@thesisheader}
+      \fi
+      \fancyfoot[CE,CO]{\xiaowuhao \thepage}
+    }{} % end definition of abstract
+  } % end add to English
