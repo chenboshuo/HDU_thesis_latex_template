@@ -40,10 +40,16 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: examaple docuemnts
-          path: build/main.pdf
+          path: build/release.pdf
       - name: Upload draft example
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: draft version
           path: build/draft.pdf
+      - name: Upload review example
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: review version
+          path: build/review.pdf

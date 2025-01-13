@@ -3,7 +3,7 @@
 .INTERMEDIATE : inkscape tree
 
 ## make all : regenerate all results.
-all:  main draft
+all: draft review release
 
 ## make main : genreate the main pdf
 main: build/main.pdf
@@ -23,6 +23,24 @@ draft.tex : build
 ## make draft: make build/draft.pdf
 draft: build/draft.pdf
 	rm -f draft.tex
+
+# review version
+review.tex : build
+	echo "\documentclass[master_review]{styles/hdu-thesis}" > review.tex
+	awk 'FNR>2' main.tex >> review.tex
+
+## make draft: make build/draft.pdf
+review: build/review.pdf
+	rm -f review.tex
+
+# release version
+release.tex : build
+	echo "\documentclass[master]{styles/hdu-thesis}" > release.tex
+	awk 'FNR>2' main.tex >> release.tex
+
+## make draft: make build/draft.pdf
+release: build/release.pdf
+	rm -f release.tex
 
 clean:
 	# git ls-files --others | xargs gio trash
