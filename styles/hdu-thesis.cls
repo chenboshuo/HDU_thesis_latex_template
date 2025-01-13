@@ -1037,7 +1037,7 @@
 
 
 %%%%%%%%%%%%%%%%%%参考文献%%%%%%%%%%%%%%%%%%
-\renewcommand{\citep}[1]{\textsuperscript{\cite{#1}}}
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 \newcommand{\hdubibliography}[1]{
   \bibliographystyle{styles/hdu-reference}
 \bibliography{#1}}
