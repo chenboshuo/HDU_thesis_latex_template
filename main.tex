@@ -76,11 +76,14 @@
 \hdubibliography{ref/reference}
 %\bibliographystyle{hdu-thesis}
 %\bibliography{ref/reference}
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% 个人成果%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\personalAchievements
+% 个人成果
+\ifreviewhead
+  \input{sections/achievements_for_review}
+\else
+  \personalAchievements
   \input{sections/achievements}
+\fi
 
 
 % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%附录%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
