@@ -885,74 +885,86 @@
   \addcontentsline{toc}{chapter}{\listtablename}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%缩略词表%%%%%%%%%%%%%%%%%%%%%%%%
-\newacronymstyle{acronym-hdu}{
-  \ifglshaslong{\glslabel}{\glsgenacfmt}{\glsgenentryfmt}
-}{
-  \renewcommand*{\GenericAcronymFields}{
-    first={\the\glslongtok\space\protect\paren{\the\glsshorttok}},
-    description={\the\glslongtok}}
-  \renewcommand*{\genacrfullformat}[2]{%
-    \glsentrydesc{##1}~(\glsentrylong{##1},\space%
-    \glsentryshort{##1})%
+% 缩略词表
+  \newacronymstyle{acronym-hdu}{
+    \ifglshaslong{\glslabel}{\glsgenacfmt}{\glsgenentryfmt}
+  }{
+    \renewcommand*{\GenericAcronymFields}{
+      first={\the\glslongtok\space\protect\paren{\the\glsshorttok}},
+      description={\the\glslongtok}}
+    \renewcommand*{\genacrfullformat}[2]{%
+      \glsentrydesc{##1}~(\glsentrylong{##1},\space%
+      \glsentryname{##1})%
+    }
+    \renewcommand*{\acronymentry}[1]{%
+      \acronymfont{\glsentryshort{##1}}%
+    }
   }
-  \renewcommand*{\acronymentry}[1]{%
-    \acronymfont{\glsentryshort{##1}}%
+  \setacronymstyle{acronym-hdu}
+
+  \newglossarystyle{hdu-cn}{
+    \setlength{\glsdescwidth}{.35\textwidth}
+    \setlength{\glspagelistwidth}{.4\textwidth}
+    \renewenvironment{theglossary}{%
+      \begin{longtable}{p{2.5cm}p{\glsdescwidth}p{\glspagelistwidth}}}%
+      {\end{longtable}}%
+    \renewcommand*{\glossaryheader}{%
+      \heiti 缩略词 &\heiti 英文全称 &
+      \heiti 中文全称 \tabularnewline\endhead}%
+    \renewcommand*{\glsgroupheading}[1]{}%
+    \renewcommand{\glossentry}[2]{
+      \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}} &
+      \glsentrylong{##1} & \glsentrydesc{##1}\tabularnewline
+    }
+    \renewcommand*{\subglossentry}[3]{
+      \glossentry{##2}{##3}}
   }
-}
-\setacronymstyle{acronym-hdu}
-
-\newglossarystyle{hdu-cn}{
-  \setlength{\glsdescwidth}{.35\textwidth}
-  \setlength{\glspagelistwidth}{.4\textwidth}
-  \renewenvironment{theglossary}%
-  {\begin{longtable}{p{2.5cm}p{\glsdescwidth}p{\glspagelistwidth}}}%
-    {\end{longtable}}%
-  \renewcommand*{\glossaryheader}{%
-    \heiti 缩略词 &\heiti 英文全称 &
-    \heiti 中文全称 \tabularnewline\endhead}%
-  \renewcommand*{\glsgroupheading}[1]{}%
-  \renewcommand{\glossentry}[2]{
-    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}} &
-    \glsentrylong{##1} & \glsentrydesc{##1}\tabularnewline
-  }
-  \renewcommand*{\subglossentry}[3]{
-    \glossentry{##2}{##3}}
-}
 
 
-\defglsentryfmt{%
-  \ifglshaslong{\glslabel}{%
-    \glsgenacfmt%
-  }{%
-    \ifglsused{\glslabel}{%
-      \glsgenentryfmt%
+  \defglsentryfmt{%
+    \ifglshaslong{\glslabel}{%
+      \glsgenacfmt%
     }{%
-      \glsgenentryfmt%
+      \ifglsused{\glslabel}{%
+        \glsgenentryfmt%
+      }{%
+        \glsgenentryfmt%
+      }%
     }%
-  }%
-}
+  }
 
-\newcommand{\glossarylist}{
-  \newpage
-  \fancyhf{}
-  % \fancyhead[C]{}
-    \fancyhead[C]{\wuhao 缩略词表}
-    %\fancyhead[C]{\wuhao\cn@thesisheader}
-    %送审版页眉
-    \ifreviewhead
-    \fancyhead[C]{\wuhao\cn@thesisheader}
-    \fi
-    \fancyfoot[CE,CO]{\xiaowuhao\thepage}
-   % \pdfbookmark{缩略词表}{glossary}
-    \printglossary[style=hdu-cn, title={\protect\centering 缩略词表}, nonumberlist, nogroupskip]
-    \addcontentsline{toc}{chapter}{缩略词表}
-  \newpage
-}
+  \newcommand{\glossarylist}{
+    \newpage
+    \fancyhf{}
+    % \fancyhead[C]{}
+      \fancyhead[C]{\wuhao 缩略词表}
+      %\fancyhead[C]{\wuhao\cn@thesisheader}
+      %送审版页眉
+      \ifreviewhead
+      \fancyhead[C]{\wuhao\cn@thesisheader}
+      \fi
+      \fancyfoot[CE,CO]{\xiaowuhao\thepage}
+    % \pdfbookmark{缩略词表}{glossary}
+      \printglossary[style=hdu-cn, title={\protect\centering 缩略词表}, nonumberlist, nogroupskip]
+      \addcontentsline{toc}{chapter}{缩略词表}
+    \newpage
+  }
+  \makeglossaries % makeglossaries -d ./build/ main
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+  % set wirte files
+  \newwrite\GlossariesDefinition
+  \immediate\openout\GlossariesDefinition=grossaries_definitions
+  \newcommand{\appendGlossariesDefinition}[1]{
+    % 保存到文件中, 生成列表时定义一次
+    \immediate\write\GlossariesDefinition{#1}
+    #1 % 在调用命令的时候定义一次
+  }
+  \newcommand{\inputAndPrintGlossaries}{
+    \IfFileExists{build/grossaries_definitions.tex}{%
+      \input{build/grossaries_definitions.tex}%
+      \glossarylist
+    }{}%
+  }
 
 %%%%%%%%%%%%%%%%%%生成目录%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \let\tableofcontents@orig=\tableofcontents

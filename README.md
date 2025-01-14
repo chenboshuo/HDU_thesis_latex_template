@@ -24,3 +24,4 @@ make clean
 - :green_heart: 使用 github actions, 可以从 actions/Artifacts 获得样例 pdf
 - :art: 调整目录结构, 将手册指南放到草稿模式中, 草稿模式可以提供 label name, 方便引用
 - :art: 不重载 citep, 使用新的命令 upcite
+- :sparkles: 完成原来模板注释的缩略词功能

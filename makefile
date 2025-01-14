@@ -12,6 +12,7 @@ main: build/main.pdf
 build/%.pdf: %.tex build
 	xelatex -output-directory="./build" $<
 	bibtex ./build/$(basename $<)
+	makeglossaries -d ./build/ $(basename $<)
 	xelatex -output-directory="./build" $<
 	xelatex -output-directory="./build" $<
 
