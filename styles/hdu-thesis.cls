@@ -72,6 +72,7 @@
 \RequirePackage{setspace}
 \RequirePackage{multirow}
 \RequirePackage{amsmath}
+\RequirePackage{bm}
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
 \RequirePackage{lmodern}
