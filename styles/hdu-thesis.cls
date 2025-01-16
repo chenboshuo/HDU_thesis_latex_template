@@ -72,6 +72,7 @@
 \RequirePackage{setspace}
 \RequirePackage{multirow}
 \RequirePackage{amsmath}
+\RequirePackage{bm}
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
 \RequirePackage{lmodern}
@@ -1100,3 +1101,6 @@
   \renewcommand{\headrulewidth}{1pt}
   \RequirePackage{showlabels}
 }{}
+
+% 绘图
+\RequirePackage{tikz}
