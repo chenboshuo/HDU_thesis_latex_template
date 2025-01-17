@@ -1104,3 +1104,7 @@
 
 % 绘图
 \RequirePackage{tikz}
+
+% todo 列表
+\RequirePackage[obeyDraft]{todonotes}
+\setuptodonotes{inline, color=blue!30}
