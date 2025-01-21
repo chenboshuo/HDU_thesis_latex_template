@@ -682,32 +682,32 @@
 \newtheorem{assumption}{假设}[chapter]
 \newtheorem{remark}{注}[chapter]
 
-
-\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
-\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
-\renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
-\renewcommand{\thetheorem}{\arabic{chapter}.\arabic{theorem}}
-\renewcommand{\theaxiom}{\arabic{chapter}.\arabic{axiom}}
-\renewcommand{\thecorollary}{\arabic{chapter}.\arabic{corollary}}
-\renewcommand{\thelemma}{\arabic{chapter}.\arabic{lemma}}
-\renewcommand{\thedefinition}{\arabic{chapter}.\arabic{definition}}
-\renewcommand{\theexample}{\arabic{chapter}.\arabic{example}}
-\renewcommand{\theproposition}{\arabic{chapter}.\arabic{proposition}}
-\renewcommand{\theproblem}{\arabic{chapter}.\arabic{problem}}
-\renewcommand{\theassumption}{\arabic{chapter}.\arabic{assumption}}
-\renewcommand{\theremark}{\arabic{chapter}.\arabic{remark}}
-\renewcommand\thealgocf{\arabic{chapter}-\arabic{algocf}}
-\renewcommand{\proofname}{\bfseries 证明}
-
-%%%%%%%%%%%%章节型中文名字设置%%%%%%%%%%%%%%
-\renewcommand{\contentsname}{目\one@space 录}
-\renewcommand{\bibname}{参考文献}
-\renewcommand{\figurename}{图}
-\renewcommand{\tablename}{表}
-\renewcommand{\listtablename}{表格目录}
-\renewcommand{\listfigurename}{图目录}
-\SetAlgorithmName{算法}{算法}{算法列表}
-
+\RequirePackage[main=pinyin,english]{babel}
+\addto\captionspinyin{
+  \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
+  \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
+  \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
+  \renewcommand{\thetheorem}{\arabic{chapter}.\arabic{theorem}}
+  \renewcommand{\theaxiom}{\arabic{chapter}.\arabic{axiom}}
+  \renewcommand{\thecorollary}{\arabic{chapter}.\arabic{corollary}}
+  \renewcommand{\thelemma}{\arabic{chapter}.\arabic{lemma}}
+  \renewcommand{\thedefinition}{\arabic{chapter}.\arabic{definition}}
+  \renewcommand{\theexample}{\arabic{chapter}.\arabic{example}}
+  \renewcommand{\theproposition}{\arabic{chapter}.\arabic{proposition}}
+  \renewcommand{\theproblem}{\arabic{chapter}.\arabic{problem}}
+  \renewcommand{\theassumption}{\arabic{chapter}.\arabic{assumption}}
+  \renewcommand{\theremark}{\arabic{chapter}.\arabic{remark}}
+  \renewcommand\thealgocf{\arabic{chapter}-\arabic{algocf}}
+  \renewcommand{\proofname}{\bfseries 证明}
+  %%%%%%%%%%%%章节型中文名字设置%%%%%%%%%%%%%%
+  \renewcommand{\contentsname}{目\one@space 录}
+  \renewcommand{\bibname}{参考文献}
+  \renewcommand{\figurename}{图}
+  \renewcommand{\tablename}{表}
+  \renewcommand{\listtablename}{表格目录}
+  \renewcommand{\listfigurename}{图目录}
+  \SetAlgorithmName{算法}{算法}{算法列表}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -805,48 +805,6 @@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%中英文摘要%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand{\cnabstract}{
-  %\setcounter{page}{1}
-  \pagenumbering{Roman}
-  %\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
-  %\setcounter{section}{0}
-    \chapter*{摘\one@space 要}
-    \addcontentsline{toc}{chapter}{摘\one@space 要}
-    \fancyhf{} %清除以前对页眉页脚的设置
-    \fancyhead[C]{\wuhao 摘\one@space 要}
-    %送审版页眉
-    \ifreviewhead
-    \fancyhead[C]{\wuhao\cn@thesisheader}
-    \fi
-    \fancyfoot[CE,CO]{\xiaowuhao \thepage}
-}
-
-\newcommand{\cnkeyword}[1]{
-  \par\vspace{\baselineskip}
-  \noindent
-  \@hangfrom{\makebox[48pt][l]{\heiti 关键词：}}#1
-}
-
-
-\newcommand{\enabstract}{
-  \chapter*{\bfseries ABSTRACT}
-  \addcontentsline{toc}{chapter}{ABSTRACT}
-    \fancyhf{}
-    \fancyhead[C]{\wuhao ABSTRACT}
-    %送审版页眉
-    \ifreviewhead
-    \fancyhead[C]{\wuhao\cn@thesisheader}
-    \fi
-    \fancyfoot[CE,CO]{\xiaowuhao \thepage}
-}
-
-\newcommand{\enkeyword}[1]{
-  \par\vspace{\baselineskip}
-  \noindent
-  \@hangfrom{\makebox[2.3cm][l]{\bfseries Keywords:}}#1
-}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%生成图列表%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1108,3 +1066,52 @@
 % todo 列表
 \RequirePackage[obeyDraft]{todonotes}
 \setuptodonotes{inline, color=blue!30}
+% 摘要
+  \newcommand{\keywords}[1]{}
+  \newenvironment{abstract}{}{}
+  % 中文摘要设置
+  \addto\captionspinyin{%
+    \renewcommand{\keywords}[1]{%
+      \vspace{\baselineskip}
+      \noindent
+      \@hangfrom{\makebox[48pt][l]{\heiti 关键词：}}%
+      #1
+    }
+    \renewenvironment{abstract}{%
+      \pagenumbering{Roman}
+      \chapter*{摘\one@space 要}
+      \addcontentsline{toc}{chapter}{摘\one@space 要}
+      \pagestyle{fancy}
+      \fancyhf{} %清除以前对页眉页脚的设置
+      \fancyhead[C]{\wuhao 摘\one@space 要}
+      %送审版页眉
+      \ifreviewhead
+        \fancyhead[C]{\wuhao\cn@thesisheader}
+      \fi
+      \fancyfoot[CE,CO]{\xiaowuhao \thepage}
+    }{ % end with a new page
+      \newpage
+    } % end abstract environment settings
+  } % end add to pinyin
+  % 英文摘要设置 English abstract settings
+  \addto\captionsenglish{%
+    \renewcommand{\keywords}[1]{%
+      \vspace{\baselineskip}
+      \noindent
+      \@hangfrom{\makebox[2.3cm][l]{\bfseries Keywords:}}#1
+    } % end command keywords
+    \renewenvironment{abstract}{%
+      \chapter*{\bfseries ABSTRACT}
+      \addcontentsline{toc}{chapter}{ABSTRACT}
+      \pagestyle{fancy}
+      \fancyhf{}
+      \fancyhead[C]{\wuhao ABSTRACT}
+      %送审版页眉
+      \ifreviewhead
+        \fancyhead[C]{\wuhao\cn@thesisheader}
+      \fi
+      \fancyfoot[CE,CO]{\xiaowuhao \thepage}
+    }{
+      \newpage
+    } % end definition of abstract
+  } % end add to English

@@ -43,3 +43,4 @@ make clean
 - :art: 不重载 citep, 使用新的命令 upcite
 - :sparkles: 完成原来模板注释的缩略词功能
 - :alien: 根据[通知附件](https://computer.hdu.edu.cn/2025/0110/c6769a274385/page.htm)修改盲审模板
+- :alien: 使用中英混合排版库修改摘要的实现方式
