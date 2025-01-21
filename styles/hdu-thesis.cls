@@ -681,32 +681,32 @@
 \newtheorem{assumption}{假设}[chapter]
 \newtheorem{remark}{注}[chapter]
 
-
-\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
-\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
-\renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
-\renewcommand{\thetheorem}{\arabic{chapter}.\arabic{theorem}}
-\renewcommand{\theaxiom}{\arabic{chapter}.\arabic{axiom}}
-\renewcommand{\thecorollary}{\arabic{chapter}.\arabic{corollary}}
-\renewcommand{\thelemma}{\arabic{chapter}.\arabic{lemma}}
-\renewcommand{\thedefinition}{\arabic{chapter}.\arabic{definition}}
-\renewcommand{\theexample}{\arabic{chapter}.\arabic{example}}
-\renewcommand{\theproposition}{\arabic{chapter}.\arabic{proposition}}
-\renewcommand{\theproblem}{\arabic{chapter}.\arabic{problem}}
-\renewcommand{\theassumption}{\arabic{chapter}.\arabic{assumption}}
-\renewcommand{\theremark}{\arabic{chapter}.\arabic{remark}}
-\renewcommand\thealgocf{\arabic{chapter}-\arabic{algocf}}
-\renewcommand{\proofname}{\bfseries 证明}
-
-%%%%%%%%%%%%章节型中文名字设置%%%%%%%%%%%%%%
-\renewcommand{\contentsname}{目\one@space 录}
-\renewcommand{\bibname}{参考文献}
-\renewcommand{\figurename}{图}
-\renewcommand{\tablename}{表}
-\renewcommand{\listtablename}{表格目录}
-\renewcommand{\listfigurename}{图目录}
-\SetAlgorithmName{算法}{算法}{算法列表}
-
+\RequirePackage[main=pinyin,english]{babel}
+\addto\captionspinyin{
+  \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
+  \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
+  \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
+  \renewcommand{\thetheorem}{\arabic{chapter}.\arabic{theorem}}
+  \renewcommand{\theaxiom}{\arabic{chapter}.\arabic{axiom}}
+  \renewcommand{\thecorollary}{\arabic{chapter}.\arabic{corollary}}
+  \renewcommand{\thelemma}{\arabic{chapter}.\arabic{lemma}}
+  \renewcommand{\thedefinition}{\arabic{chapter}.\arabic{definition}}
+  \renewcommand{\theexample}{\arabic{chapter}.\arabic{example}}
+  \renewcommand{\theproposition}{\arabic{chapter}.\arabic{proposition}}
+  \renewcommand{\theproblem}{\arabic{chapter}.\arabic{problem}}
+  \renewcommand{\theassumption}{\arabic{chapter}.\arabic{assumption}}
+  \renewcommand{\theremark}{\arabic{chapter}.\arabic{remark}}
+  \renewcommand\thealgocf{\arabic{chapter}-\arabic{algocf}}
+  \renewcommand{\proofname}{\bfseries 证明}
+  %%%%%%%%%%%%章节型中文名字设置%%%%%%%%%%%%%%
+  \renewcommand{\contentsname}{目\one@space 录}
+  \renewcommand{\bibname}{参考文献}
+  \renewcommand{\figurename}{图}
+  \renewcommand{\tablename}{表}
+  \renewcommand{\listtablename}{表格目录}
+  \renewcommand{\listfigurename}{图目录}
+  \SetAlgorithmName{算法}{算法}{算法列表}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -1048,7 +1048,6 @@
 }{}
 
 % 摘要
-  \RequirePackage[main=pinyin,english]{babel}
   \newcommand{\keywords}[1]{}
   \newenvironment{abstract}{}{}
   % 中文摘要设置
@@ -1071,7 +1070,9 @@
         \fancyhead[C]{\wuhao\cn@thesisheader}
       \fi
       \fancyfoot[CE,CO]{\xiaowuhao \thepage}
-    }{} % end abstract environment settings
+    }{ % end with a new page
+      \newpage
+    } % end abstract environment settings
   } % end add to pinyin
   % 英文摘要设置 English abstract settings
   \addto\captionsenglish{%
@@ -1091,5 +1092,7 @@
         \fancyhead[C]{\wuhao\cn@thesisheader}
       \fi
       \fancyfoot[CE,CO]{\xiaowuhao \thepage}
-    }{} % end definition of abstract
+    }{
+      \newpage
+    } % end definition of abstract
   } % end add to English
