@@ -684,9 +684,9 @@
 
 \RequirePackage[main=pinyin,english]{babel}
 \addto\captionspinyin{
-  \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
-  \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
-  \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
+  \renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
+  \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
+  \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
   \renewcommand{\thetheorem}{\arabic{chapter}.\arabic{theorem}}
   \renewcommand{\theaxiom}{\arabic{chapter}.\arabic{axiom}}
   \renewcommand{\thecorollary}{\arabic{chapter}.\arabic{corollary}}
