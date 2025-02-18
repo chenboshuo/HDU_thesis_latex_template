@@ -1115,3 +1115,29 @@
       \newpage
     } % end definition of abstract
   } % end add to English
+  \RequirePackage{paracol}
+  \newcommand{\zhEn}[2]{%
+    \ifdraft{%
+      \ifx\hfuzz#2\hfuzz%
+        \todo[color=yellow!30]{Translate:#1}%
+      \else%
+        \begin{paracol}{2}%
+          #2%
+        \switchcolumn%
+          #1%
+        \end{paracol}%
+      \fi%
+    }{}
+    \appendChineseAbstract{#1}
+    \appendEnglishAbstract{#2}
+  }
+  % 中文摘要整合
+  \newwrite\ChineseAbstractTexFile
+  \immediate\openout\ChineseAbstractTexFile=abstract_zh
+  \newcommand{\appendChineseAbstract}[1]{\immediate\write\ChineseAbstractTexFile{#1}}
+  \newcommand{\PrintChineseAbstract}{\immediate\closeout\ChineseAbstractTexFile\input{build/abstract_zh}}
+  % 英文摘要整合
+  \newwrite\EnglishAbstractTexFile
+  \immediate\openout\EnglishAbstractTexFile=abstract_en
+  \newcommand{\appendEnglishAbstract}[1]{\immediate\write\EnglishAbstractTexFile{#1}}
+  \newcommand{\PrintEnglishAbstract}{\immediate\closeout\EnglishAbstractTexFile\input{build/abstract_en}}
