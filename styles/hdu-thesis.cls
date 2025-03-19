@@ -592,7 +592,7 @@
   colorlinks=true,
   citecolor=black,
   linkcolor=black,
-  urlcolor=blue
+  urlcolor=black
 }
 
 \RequirePackage{indentfirst}
@@ -1012,7 +1012,9 @@
 % \newcommand{\hdubibliography}[1]{
 %   \bibliographystyle{styles/hdu-reference}
 % \bibliography{#1}}
-\RequirePackage{gbt7714}
+% \RequirePackage{gbt7714}
+% \bibliographystyle{styles/hdu-reference}
+\bibliographystyle{styles/hdu-reference-simpified}
 \setlength{\bibsep}{0em}%%%%%%%调整间距
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
