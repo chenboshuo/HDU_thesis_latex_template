@@ -47,3 +47,4 @@ make clean
 - :bug: 直接使用 GBT7714 包, 防止文献可能出现问题
 - :bug: 根据[通知附件](https://computer.hdu.edu.cn/2025/0110/c6769a274385/page.htm) 图注应该是 3.1 而不是原来的 3-1
 - :sparkles: 使用 zhEn 命令写摘要，可以在草稿下中英文对照
+- :art: 提供不含 S.I. J/OL 的简洁版本，不需要手动删除 bib 对应项 

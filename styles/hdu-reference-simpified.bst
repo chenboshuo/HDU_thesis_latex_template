@@ -497,7 +497,7 @@ FUNCTION {is.online} {                            % int Entry::is_online() {
 FUNCTION {set.mark} {                             % void Entry::set_mark(String mark) {
   'mark :=                                        %   this.mark = mark;
   is.online {                                     %   if (is_online()) {
-    mark "/OL" * 'mark :=                         %     this.mark = this.mark + "/OL";
+    % mark "/OL" * 'mark :=                         %     this.mark = this.mark + "/OL";
   } {                                             %   } else {
     media empty$ not {                            %     if (! empty(this.media)) {
       mark "/" * media * 'mark :=                 %       this.mark = this.mark + "/" + this.media;
@@ -1388,8 +1388,8 @@ FUNCTION {book.impl} {                            % void Entry::book_impl() {
   false output.translator                         %   output_translator(false);
   false output.edition                            %   output_edition(false);
   publisher empty$ not {                          %   if (! empty(this.publisher)) {
-    true output.address                           %     output_address(true);
-    true output.publisher                         %     output_publisher(true);
+    % true output.address                           %     output_address(true);
+    % true output.publisher                         %     output_publisher(true);
     cap.comma write$                              %     write(cap_comma);
   } {                                             %   } else {
     cap.period write$                             %     write(cap_period);
@@ -1426,8 +1426,8 @@ FUNCTION {proceedings} {                          % void Entry::proceedings() {
   false output.translator                         %   output_translator(false);
   false output.edition                            %   output_edition(false);
   publisher empty$ not {                          %   if (! empty(this.publisher)) {
-    true output.address                           %     output_address(true);
-    true output.publisher                         %     output_publisher(true);
+    % true output.address                           %     output_address(true);
+    % true output.publisher                         %     output_publisher(true);
     cap.comma write$                              %     write(cap_comma);
   } {                                             %   } else {
     cap.period write$                             %     write(cap_period);
@@ -1453,7 +1453,7 @@ FUNCTION {thesis.impl} {                          % void Entry::thesis_impl() {
   true output.title                               %   output_title(true);
   true output.mark                                %   output_mark(true);
   false output.translator                         %   output_translator(false);
-  true output.address                             %   output_address(true);
+  % true output.address                             %   output_address(true);
   true output.school                              %   output_school(true);
   cap.comma write$                                %   write(cap_comma);
   true output.year                                %   output_year(true);
@@ -1502,7 +1502,7 @@ FUNCTION {techreport} {                           % void Entry::techreport() {
   false output.edition                            %   output_edition(false);
   false output.version                            %   output_version(false);
   institution empty$ not {                        %   if (! empty(this.institution)) {
-    true output.address                           %     output_address(true);
+    % true output.address                           %     output_address(true);
     true output.institution                       %     output_institution(true);
     cap.comma write$                              %     write(cap_comma);
   } {                                             %   } else {
@@ -1526,8 +1526,8 @@ FUNCTION {standard} {                             % void Entry::standard() {
   false output.translator                         %   output_translator(false);
   false output.edition                            %   output_edition(false);
   publisher empty$ not {                          %   if (! empty(this.publisher)) {
-    true output.address                           %     output_address(true);
-    true output.publisher                         %     output_publisher(true);
+    % true output.address                           %     output_address(true);
+    % true output.publisher                         %     output_publisher(true);
     cap.comma write$                              %     write(cap_comma);
   } {                                             %   } else {
     cap.period write$                             %     write(cap_period);
@@ -1550,8 +1550,8 @@ FUNCTION {reference} {                            % void Entry::reference() {
   false output.translator                         %   output_translator(false);
   false output.edition                            %   output_edition(false);
   publisher empty$ not {                          %   if (! empty(this.publisher)) {
-    true output.address                           %     output_address(true);
-    true output.publisher                         %     output_publisher(true);
+    % true output.address                           %     output_address(true);
+    % true output.publisher                         %     output_publisher(true);
     cap.comma write$                              %     write(cap_comma);
   } {                                             %   } else {
     cap.period write$                             %     write(cap_period);
@@ -1587,8 +1587,8 @@ FUNCTION {periodical.impl} {                      % void Entry::periodical_impl(
     false output.end.number                       %     output_end_number(false);
   } 'skip$ if$                                    %   }
   publisher empty$ not {                          %   if (! empty(this.publisher)) {
-    true output.address                           %     output_address(true);
-    true output.publisher                         %     output_publisher(true);
+    % true output.address                           %     output_address(true);
+    % true output.publisher                         %     output_publisher(true);
     cap.comma write$                              %     write(cap_comma);
   } {                                             %   } else {
     cap.period write$                             %     write(cap_period);
@@ -1644,11 +1644,11 @@ FUNCTION {online} {                               % void Entry::online() {
   true output.mark                                %   output_mark(true);
   publisher empty$ not {                          %   if (! empty(this.publisher)) {
     address empty$ not {                          %     if (! empty(this.address)) {
-      true output.address                         %       output_address(true);
-      true output.publisher                       %       output_publisher(true);
+      % true output.address                         %       output_address(true);
+      % true output.publisher                       %       output_publisher(true);
       cap.comma write$                            %       write(cap_comma);
     } {                                           %     } else {
-      true output.publisher.no.address            %       output_publisher_no_address(true);
+      % true output.publisher.no.address            %       output_publisher_no_address(true);
       cap.comma write$                            %       write(cap_comma);
     } if$                                         %     }
   } {                                             %   } else {
@@ -1681,8 +1681,8 @@ FUNCTION {program.impl} {                         % void Entry::program_impl() {
   true output.title                               %   output_title(true);
   true output.mark                                %   output_mark(true);
   publisher empty$ not {                          %   if (! empty(this.publisher)) {
-    true output.address                           %     output_address(true);
-    true output.publisher                         %     output_publisher(true);
+    % true output.address                           %     output_address(true);
+    % true output.publisher                         %     output_publisher(true);
     cap.comma write$                              %     write(cap_comma);
   } {                                             %   } else {
     cap.period write$                             %     write(cap_period);
@@ -1741,8 +1741,8 @@ FUNCTION {inbook.impl} {                          % void Entry::inbook_impl() {
   true output.series.volume.booktitle             %   output_series_volume_booktitle(true);
   false output.edition                            %   output_edition(false);
   publisher empty$ not {                          %   if (! empty(this.publisher)) {
-    true output.address                           %     output_address(true);
-    true output.publisher                         %     output_publisher(true);
+    % true output.address                           %     output_address(true);
+    % true output.publisher                         %     output_publisher(true);
     cap.comma write$                              %     write(cap_comma);
   } {                                             %   } else {
     cap.period write$                             %     write(cap_period);
@@ -1790,7 +1790,7 @@ FUNCTION {article} {                              % void Entry::article() {
   false output.number                             %   output_number(false);
   false output.pages                              %   output_pages(false);
   false output.citedate                           %   output_citedate(false);
-  false output.url.or.doi                         %   output_url_or_doi(false);
+  % false output.url.or.doi                         %   output_url_or_doi(false);
   end.bibitem                                     %   end_bibitem();
 }                                                 % }
                                                   %
