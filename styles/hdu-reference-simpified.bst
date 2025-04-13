@@ -1453,7 +1453,7 @@ FUNCTION {thesis.impl} {                          % void Entry::thesis_impl() {
   true output.title                               %   output_title(true);
   true output.mark                                %   output_mark(true);
   false output.translator                         %   output_translator(false);
-  % true output.address                             %   output_address(true);
+  true output.address                             %   output_address(true);
   true output.school                              %   output_school(true);
   cap.comma write$                                %   write(cap_comma);
   true output.year                                %   output_year(true);
@@ -1637,7 +1637,7 @@ FUNCTION {patent} {                               % void Entry::patent() {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                   %
 FUNCTION {online} {                               % void Entry::online() {
-  "EB" set.mark                                   %   set_mark("EB");
+  "EB/OL" set.mark                                   %   set_mark("EB");
   start.bibitem                                   %   start_bibitem();
   false output.author                             %   output_author(false);
   true output.title                               %   output_title(true);
