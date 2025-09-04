@@ -676,7 +676,7 @@
 \newtheorem{corollary}{推论}[chapter]
 \newtheorem{lemma}{引理}[chapter]
 \newtheorem{definition}{定义}[chapter]
-\newtheorem{example}{举例}[chapter]
+\newtheorem{example}{例}[chapter]
 \newtheorem{proposition}{命题}[chapter]
 \newtheorem{problem}{问题}[chapter]
 \newtheorem{assumption}{假设}[chapter]
